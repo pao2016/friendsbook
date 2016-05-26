@@ -1,29 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+<h1>Todos los estados </h1>
+</div>
 
-<h1>Listing Statuses</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Connido</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%=  link_to "Crear un nuevo Post", new_status_path, class:"btn btn-success"  %>
 
   <tbody>
     <% @statuses.each do |status| %>
-      <tr>
-        <td><%= status.nombre %></td>
-        <td><%= status.connido %></td>
-        <td><%= link_to 'Show', status %></td>
-        <td><%= link_to 'Edit', edit_status_path(status) %></td>
-        <td><%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+       <div class="status">
+        <strong><%= status.nombre %></strong>
+        <p><%= status.connido %></p>
+         <div>
+          <%= link_to "Hace  "+ time_ago_in_words(status.created_at),status %>
+         </div>
+         <span class="admin">
+       | <%= link_to 'Editar', edit_status_path(status) %> |
+        <%= link_to 'Eliminar', status, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+        </span>
+
+        </div>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Status', new_status_path %>
+
